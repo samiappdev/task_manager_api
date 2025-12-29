@@ -15,7 +15,7 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Task Manager'),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
       ),
 
@@ -23,7 +23,7 @@ class HomeScreen extends ConsumerWidget {
         onPressed: () {
           context.push('/create');
         },
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blueAccent,
         child: const Icon(Icons.add, color: Colors.white),
       ),
 
@@ -70,15 +70,32 @@ class HomeScreen extends ConsumerWidget {
                           color: task.isCompleted ? Colors.grey : Colors.black,
                         ),
                       ),
-                      subtitle: Text(
-                        task.description,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (task.description.isNotEmpty)
+                            Text(
+                              task.description,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text(
+                              'Created: ${task.createdAt.month}/${task.createdAt.day}/${task.createdAt.year}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
 
                       trailing: Checkbox(
                         value: task.isCompleted,
-                        activeColor: Colors.deepPurple,
+                        activeColor: Colors.blueAccent,
                         onChanged: (value) {
                           ref.read(taskProvider.notifier).checkTaskStatus(task);
                         },

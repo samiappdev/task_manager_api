@@ -90,7 +90,7 @@ class _AddTaskState extends ConsumerState<AddTaskScreen> {
                 child: ElevatedButton(
                   onPressed: _isLoading ? null : _saveTask,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: Colors.blueAccent,
                     foregroundColor: Colors.white,
                   ),
                   child: _isLoading
